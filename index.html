@@ -18,13 +18,13 @@
             <input type="button" value="C" class="green">
             <input type="button" value="DE" class="green">
             <input type="button" value="%" class="green">
-            <input type="button" value="%" class="green">
+            <input type="button" value="/" class="green">
           </div>
           <div>
             <input type="button" value="7">
             <input type="button" value="8">
             <input type="button" value="9">
-            <input type="button" value="X" class="green">
+            <input type="button" value="*" class="green">
           </div>
           <div>
             <input type="button" value="4">
@@ -47,9 +47,86 @@
         </div>
       </form>
     </div>
-    
-    <script>
 
-    </script>
+    <script>
+      let screen = document.querySelector('.calculator-screen');
+
+      // Clear Screen
+      function clearScreen() {
+        screen.value = "0";
+      }
+
+      // Delete last number
+      function deleteLastNumber() {
+        screen.value = screen.value.slice(0, -1);
+      }
+
+      // Calculate
+      function calculate() {
+        screen.value = eval(screen.value);
+      }
+
+      // C button action
+      document.querySelector('input[type="button"][value="C"]').addEventListener('click', function(event) {
+        clearScreen();
+      })
+
+      // Delete button action
+      document.querySelector('input[type="button"][value="DE"]').addEventListener('click', function(event) {
+        deleteLastNumber();
+      })
+
+      // % button action
+      document.querySelector('input[type="button"][value="%"]').addEventListener('click', function(event) {
+        screen.value = screen.value / 100;
+      })
+
+      // / button action
+      document.querySelector('input[type="button"][value="/"]').addEventListener('click', function(event) {
+        screen.value = screen.value + " / ";
+      })
+
+      // * button action
+       document.querySelector('input[type="button"][value="*"]').addEventListener('click', function(event) {
+        screen.value = screen.value + " * ";
+      })
+
+      // - button action
+      document.querySelector('input[type="button"][value="-"]').addEventListener('click', function(event) {
+        screen.value = screen.value + " - ";
+      })
+
+      // + button action
+      document.querySelector('input[type="button"][value="+"]').addEventListener('click', function(event) {
+        screen.value = screen.value + " + ";
+      })
+
+      // = button action
+      document.querySelector('input[type="button"][value="="]').addEventListener('click', function(event) {
+        calculate();
+      })
+
+      // . button action
+      document.querySelector('input[type="button"][value="."]').addEventListener('click', function(event) {
+        screen.value = screen.value + ".";
+      })
+
+      // 00 button action
+      document.querySelector('input[type="button"][value="00"]').addEventListener('click', function(event) {
+        screen.value = screen.value + "00";
+      })
+
+      // 0-9 button action
+      for (let i = 0; i <= 9; i++) {
+        document.querySelector('input[type="button"][value="' + i + '"]').addEventListener('click', function(event) {
+          if (screen.value === "0") {
+            screen.value = `${i}`;
+          } else {
+            screen.value = screen.value + `${i}`;
+          }
+        });
+      }
+
+      </script>
   </body>
 </html>
